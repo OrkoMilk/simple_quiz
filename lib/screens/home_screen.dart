@@ -1,12 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_simple_quizapp/common/app_bar_config.dart';
+import 'package:flutter_simple_quizapp/theme/theme.dart';
+import 'package:flutter_simple_quizapp/view_models/home_view_model.dart';
+import 'package:flutter_simple_quizapp/view_models/posts_view_model.dart';
+import 'package:flutter_simple_quizapp/view_models/theme_view_model.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_starter_app/common/app_bar_config.dart';
-import 'package:provider_starter_app/theme/theme.dart';
-import 'package:provider_starter_app/view_models/home_view_model.dart';
-import 'package:provider_starter_app/view_models/posts_view_model.dart';
-import 'package:provider_starter_app/view_models/theme_view_model.dart';
-
 import '../generated/locale_keys.g.dart';
 import '../main_dev.dart';
 

@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_simple_quizapp/app_config.dart';
+import 'package:flutter_simple_quizapp/popup/popup.dart';
+import 'package:flutter_simple_quizapp/theme/theme.dart';
+import 'package:flutter_simple_quizapp/utils/application_utils.dart';
 import 'package:package_info/package_info.dart';
-import 'package:provider_starter_app/app_config.dart';
-import 'package:provider_starter_app/popup/popup.dart';
-import 'package:provider_starter_app/theme/theme.dart';
-import 'package:provider_starter_app/utils/application_utils.dart';
 
 import 'utils/logger.dart';
 

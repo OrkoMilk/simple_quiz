@@ -1,8 +1,7 @@
 import 'dart:async';
-
-import 'package:provider_starter_app/database/app_database.dart';
-import 'package:provider_starter_app/database/dao_api.dart';
-import 'package:provider_starter_app/models/item_model.dart';
+import 'package:flutter_simple_quizapp/database/app_database.dart';
+import 'package:flutter_simple_quizapp/database/dao_api.dart';
+import 'package:flutter_simple_quizapp/models/item_model.dart';
 import 'package:sembast/sembast.dart';
 
 typedef DatabaseSnapshotList = List<RecordSnapshot<String?, Map<String, dynamic>>>;

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider_starter_app/models/post.dart';
-import 'package:provider_starter_app/network/response.dart';
-import 'package:provider_starter_app/services/api_service.dart';
-import 'package:provider_starter_app/utils/logger.dart';
+import 'package:flutter_simple_quizapp/models/post.dart';
+import 'package:flutter_simple_quizapp/network/response.dart';
+import 'package:flutter_simple_quizapp/services/api_service.dart';
+import 'package:flutter_simple_quizapp/utils/logger.dart';
+
 
 class PostsViewModel extends ChangeNotifier {
   final ApiService _apiService;

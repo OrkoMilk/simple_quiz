@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
-import 'package:provider_starter_app/app.dart';
-import 'package:provider_starter_app/app_config.dart';
-import 'package:provider_starter_app/view_models/theme_view_model.dart';
+import 'package:flutter_simple_quizapp/app.dart';
+import 'package:flutter_simple_quizapp/app_config.dart';
+import 'package:flutter_simple_quizapp/view_models/theme_view_model.dart';
 
 import 'utils/logger.dart';
 

@@ -1,6 +1,6 @@
-import 'package:provider_starter_app/models/post.dart';
-import 'package:provider_starter_app/network/api_client.dart';
-import 'package:provider_starter_app/utils/logger.dart';
+import 'package:flutter_simple_quizapp/models/post.dart';
+import 'package:flutter_simple_quizapp/network/api_client.dart';
+import 'package:flutter_simple_quizapp/utils/logger.dart';
 
 const String postsPath = '/posts';
 

@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:provider_starter_app/database/home_dao.dart';
-import 'package:provider_starter_app/models/item_model.dart';
+import 'package:flutter_simple_quizapp/database/home_dao.dart';
+import 'package:flutter_simple_quizapp/models/item_model.dart';
 
 class HomeViewModel extends ChangeNotifier {
   late HomeDao _homeDao;
