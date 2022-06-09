@@ -37,7 +37,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.extrawest.flutter_simple_quizApp"
+        applicationId "com.extrawest.flutter_simple_quizapp"
         minSdkVersion 18
         targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
