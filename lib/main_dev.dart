@@ -31,7 +31,7 @@ Future<void> main() async {
   const configuredApp = AppConfig(
     appName: 'DEV Flutter Provider Application Starter',
     flavorName: 'dev',
-    apiUrl: 'jsonplaceholder.typicode.com',
+    apiUrl: 'run.mocky.io',
     child: Application(),
   );
   await SystemChrome.setPreferredOrientations([
