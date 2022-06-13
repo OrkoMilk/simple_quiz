@@ -19,6 +19,8 @@
   },
   "fetch_posts": "Fetch posts",
 
+  "start_quiz": "Start quiz",
+
   "auto": "auto",
   "light": "light",
   "dark": "dark"
