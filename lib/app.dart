@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_simple_quizapp/app_config.dart';
 import 'package:flutter_simple_quizapp/routes.dart';
+import 'package:flutter_simple_quizapp/view_models/one_answer_quiz_view_model.dart';
+import 'package:flutter_simple_quizapp/view_models/quiz_view_model.dart';
 import 'package:flutter_simple_quizapp/view_models/theme_view_model.dart';
 import 'package:provider/provider.dart';
 import 'services/api_service.dart';
@@ -24,7 +26,9 @@ class _ApplicationState extends State<Application> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => HomeViewModel()),
-        ChangeNotifierProvider(create: (context) => PostsViewModel(_apiService)),
+        ChangeNotifierProvider(create: (context) => ApiViewModel(_apiService)),
+        ChangeNotifierProvider(create: (context) => QuizViewModel()),
+        ChangeNotifierProvider(create: (context) => OneAnswerQuizViewModel()),
       ],
       child: Consumer<ThemeViewModel>(builder: (context, themeViewModel, _) {
         return MaterialApp(
