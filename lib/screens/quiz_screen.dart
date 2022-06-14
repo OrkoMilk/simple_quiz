@@ -7,6 +7,7 @@ import 'package:flutter_simple_quizapp/view_models/quiz_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../common/app_bar_config.dart';
+import '../routes.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({Key? key}) : super(key: key);
@@ -36,11 +37,20 @@ class _QuizScreenState extends State<QuizScreen> {
       children: [
         if (quizProvider.isFinished) ...{
           Center(
-            child: ElevatedButton(
-              onPressed: () {
-                //TODO: back to home screen
-              },
-              child: const Text('Back to home screen'),
+            child: Column(
+              children: [
+                Text('Your score is: ${quizProvider.counter.toString()}'),
+                const SizedBox(height: 20.0),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, homeScreenRoute);
+                    },
+                    child: const Text('Back to home screen'),
+                  ),
+                ),
+              ],
             ),
           ),
         } else ...{
@@ -66,7 +76,7 @@ class _QuizScreenState extends State<QuizScreen> {
                   onPressed: () {
                     quizProvider.checkCorrectAnswer(
                       answer: true,
-                      quiz: apiResponse.data![quizProvider.quizIndex],
+                      quiz: apiResponse.data!,
                     );
                   },
                   child: const Text('True'),
@@ -78,7 +88,7 @@ class _QuizScreenState extends State<QuizScreen> {
                   onPressed: () {
                     quizProvider.checkCorrectAnswer(
                       answer: false,
-                      quiz: apiResponse.data![quizProvider.quizIndex],
+                      quiz: apiResponse.data!,
                     );
                   },
                   child: const Text('False'),
