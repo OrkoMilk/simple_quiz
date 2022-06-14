@@ -12,6 +12,8 @@ abstract class  LocaleKeys {
   static const theme = 'theme';
   static const plural = 'plural';
   static const fetch_posts = 'fetch_posts';
+  static const start_quiz = 'start_quiz';
+  static const go_to_score = 'go_to_score';
   static const auto = 'auto';
   static const light = 'light';
   static const dark = 'dark';
