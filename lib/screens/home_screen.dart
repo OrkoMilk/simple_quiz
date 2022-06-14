@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_simple_quizapp/common/app_bar_config.dart';
 import 'package:flutter_simple_quizapp/routes.dart';
-import 'package:flutter_simple_quizapp/view_models/posts_view_model.dart';
+import 'package:flutter_simple_quizapp/view_models/api_view_model.dart';
 import 'package:flutter_simple_quizapp/view_models/quiz_view_model.dart';
 import 'package:provider/provider.dart';
 import '../generated/locale_keys.g.dart';

@@ -8,7 +8,7 @@ import 'package:flutter_simple_quizapp/view_models/theme_view_model.dart';
 import 'package:provider/provider.dart';
 import 'services/api_service.dart';
 import 'view_models/home_view_model.dart';
-import 'view_models/posts_view_model.dart';
+import 'view_models/api_view_model.dart';
 
 class Application extends StatefulWidget {
   const Application({Key? key}) : super(key: key);

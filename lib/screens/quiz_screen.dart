@@ -2,11 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_simple_quizapp/generated/locale_keys.g.dart';
 import 'package:flutter_simple_quizapp/network/response.dart';
-import 'package:flutter_simple_quizapp/view_models/posts_view_model.dart';
+import 'package:flutter_simple_quizapp/view_models/api_view_model.dart';
 import 'package:flutter_simple_quizapp/view_models/quiz_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../common/app_bar_config.dart';
+import '../models/quiz_model.dart';
 import '../routes.dart';
 
 class QuizScreen extends StatefulWidget {
@@ -19,18 +20,17 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
   @override
   Widget build(BuildContext context) {
-    final apiResponse = context.watch<ApiViewModel>().postsListResponse.status;
+    final apiResponse = context.watch<ApiViewModel>().postsListResponse;
 
     return Scaffold(
         appBar: defaultAppBar(context, tr(LocaleKeys.app_bar_title)),
-        body: apiResponse.isCompleted
-            ? _buildQuiz()
+        body: apiResponse.status.isCompleted
+            ? _buildQuiz(apiResponse)
             : const Center(child: CircularProgressIndicator()));
   }
 
-  Widget _buildQuiz() {
+  Widget _buildQuiz(NetworkResponse<List<QuizModel>> apiResponse) {
     final quizProvider = context.watch<QuizViewModel>();
-    final apiResponse = context.watch<ApiViewModel>().postsListResponse;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

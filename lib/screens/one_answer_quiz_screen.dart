@@ -1,9 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_simple_quizapp/generated/locale_keys.g.dart';
+import 'package:flutter_simple_quizapp/models/answer_qiuz_model.dart';
 import 'package:flutter_simple_quizapp/network/response.dart';
 import 'package:flutter_simple_quizapp/view_models/one_answer_quiz_view_model.dart';
-import 'package:flutter_simple_quizapp/view_models/posts_view_model.dart';
+import 'package:flutter_simple_quizapp/view_models/api_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../common/app_bar_config.dart';
@@ -19,19 +20,18 @@ class OneAnswerQuizScreen extends StatefulWidget {
 class _OneAnswerQuizScreenState extends State<OneAnswerQuizScreen> {
   @override
   Widget build(BuildContext context) {
-    final apiResponse = context.watch<ApiViewModel>().quizListResponse.status;
+    final apiResponse = context.watch<ApiViewModel>().quizListResponse;
 
     return Scaffold(
         appBar: defaultAppBar(context, tr(LocaleKeys.app_bar_title)),
-        body: apiResponse.isCompleted
-            ? _buildQuiz()
+        body: apiResponse.status.isCompleted
+            ? _buildQuiz(apiResponse)
             : const Center(child: CircularProgressIndicator()));
   }
 
-  Widget _buildQuiz() {
+  Widget _buildQuiz(NetworkResponse<List<OneAnswerQuizModel>> apiResponse) {
     final quizProvider = context.watch<OneAnswerQuizViewModel>();
-    final apiResponse = context.watch<ApiViewModel>().quizListResponse;
-    final answers = apiResponse.data![quizProvider.quizIndex].answers ?? [];
+    final answers = apiResponse.data![quizProvider.quizIndex].answers;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -73,14 +73,14 @@ class _OneAnswerQuizScreenState extends State<OneAnswerQuizScreen> {
           Expanded(
             child: ListView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                itemCount: answers.length,
+                itemCount: answers!.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
                     margin: const EdgeInsets.all(5.0),
                     child: ElevatedButton(
                       onPressed: () {
                         quizProvider.checkCorrectAnswer(
-                          answer: answers[index],
+                          answer: answers![index],
                           quiz: apiResponse.data!,
                         );
                       },
