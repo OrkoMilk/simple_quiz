@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_simple_quizapp/models/post.dart';
+import 'package:flutter_simple_quizapp/models/answer_qiuz_model.dart';
+import 'package:flutter_simple_quizapp/models/quiz_model.dart';
 import 'package:flutter_simple_quizapp/network/response.dart';
 import 'package:flutter_simple_quizapp/services/api_service.dart';
 import 'package:flutter_simple_quizapp/utils/logger.dart';
 
 
-class PostsViewModel extends ChangeNotifier {
+class ApiViewModel extends ChangeNotifier {
   final ApiService _apiService;
-  NetworkResponse<List<PostModel>> postsListResponse = NetworkResponse.none();
+
+  NetworkResponse<List<QuizModel>> postsListResponse = NetworkResponse.none();
+  NetworkResponse<List<OneAnswerQuizModel>> quizListResponse = NetworkResponse.none();
+
   NetworkResponse publishPostResponse = NetworkResponse.none();
 
-  PostsViewModel(this._apiService);
+  ApiViewModel(this._apiService);
 
   Future<void> fetchPosts() async {
-    postsListResponse = NetworkResponse<List<PostModel>>.loading('Fetching posts...');
+    postsListResponse = NetworkResponse<List<QuizModel>>.loading('Fetching posts...');
     notifyListeners();
     try {
-      final postList = await _apiService.fetchPostsData();
+      final postList = await _apiService.fetchQuizPostsData();
       postsListResponse = NetworkResponse.completed(postList);
     } catch (e) {
       postsListResponse = NetworkResponse.error(e.toString());
@@ -26,15 +30,15 @@ class PostsViewModel extends ChangeNotifier {
     }
   }
 
-  Future<void> publishPost(String title, String body, int userId) async {
-    publishPostResponse = NetworkResponse.loading('Publishing post...');
+  Future<void> fetchQuizPosts() async {
+    quizListResponse = NetworkResponse<List<OneAnswerQuizModel>>.loading('Fetching posts...');
     notifyListeners();
     try {
-      final postList = await _apiService.publishPostData(body);
-      publishPostResponse = NetworkResponse.completed(postList);
+      final postList = await _apiService.fetchAnswerQuizPostsData();
+      quizListResponse = NetworkResponse.completed(postList);
     } catch (e) {
-      publishPostResponse = NetworkResponse.error(e.toString());
-      log.severe('publishPost error: $e');
+      quizListResponse = NetworkResponse.error(e.toString());
+      log.fine('fetchPosts error: $e');
     } finally {
       notifyListeners();
     }
