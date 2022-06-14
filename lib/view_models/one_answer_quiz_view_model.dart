@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_simple_quizapp/database/home_dao.dart';
-import 'package:flutter_simple_quizapp/models/quiz_model.dart';
+import 'package:flutter_simple_quizapp/models/answer_qiuz_model.dart';
 
 
-class QuizViewModel extends ChangeNotifier {
+class OneAnswerQuizViewModel extends ChangeNotifier {
   HomeDao _homeDao = HomeDao();
   StreamSubscription? _dbSubscription;
 
-  List<QuizModel> _inMemoryQuizList = [];
+  List<OneAnswerQuizModel> _inMemoryOneAnswerQuizList = [];
 
   int _correctAnswerCounter = 0;
   int _quizIndex = 0;
@@ -18,9 +18,9 @@ class QuizViewModel extends ChangeNotifier {
   int get quizIndex => _quizIndex;
   int get counter => _correctAnswerCounter;
 
-  List<QuizModel> get inMemoryQuizList => _inMemoryQuizList;
+  List<OneAnswerQuizModel> get inMemoryQuizList => _inMemoryOneAnswerQuizList;
 
-  QuizViewModel() {
+  OneAnswerQuizViewModel() {
     _init();
   }
 
@@ -29,26 +29,23 @@ class QuizViewModel extends ChangeNotifier {
     _listenToOffersUpdates();
   }
 
-  Future<void> insertQuiz(QuizModel quizModel) async {
-    await _homeDao.saveQuiz(quizModel);
-  }
-
-  Future<List<QuizModel>> getAllQuiz() async {
-    return _homeDao.getAllQuiz();
+  Future<void> insertOneAnswerQuiz(OneAnswerQuizModel quizModel) async {
+    await _homeDao.saveOneAnswerQuiz(quizModel);
   }
 
   Future<void> clearStore() async {
     await _homeDao.clearStore();
   }
 
-  void checkCorrectAnswer({required bool answer, required List<QuizModel> quiz}) {
+  void checkCorrectAnswer({required String answer, required List<OneAnswerQuizModel> quiz}) {
     if (answer == quiz[_quizIndex].rightAnswer) {
-      insertQuiz(quiz[_quizIndex]);
+      insertOneAnswerQuiz(quiz[_quizIndex]);
       _correctAnswerCounter++;
     }
     _quizIndex++;
     if (_quizIndex == quiz.length){
       _isFinished = true;
+      _quizIndex = 0;
       notifyListeners();
       return;
     }
@@ -57,7 +54,7 @@ class QuizViewModel extends ChangeNotifier {
 
   Future<void> _listenToOffersUpdates() async {
     _dbSubscription = await _homeDao.listenToUpdates((DatabaseSnapshotList snapshots) {
-      _inMemoryQuizList = HomeDao.snapshotsToQuizList(snapshots);
+      _inMemoryOneAnswerQuizList = HomeDao.snapshotsToOneAnswerQuizList(snapshots);
       notifyListeners();
     });
   }
