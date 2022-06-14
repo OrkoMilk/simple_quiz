@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'package:flutter_simple_quizapp/database/app_database.dart';
 import 'package:flutter_simple_quizapp/database/dao_api.dart';
+import 'package:flutter_simple_quizapp/models/answer_qiuz_model.dart';
 import 'package:flutter_simple_quizapp/models/item_model.dart';
+import 'package:flutter_simple_quizapp/models/quiz_model.dart';
 import 'package:sembast/sembast.dart';
 
 typedef DatabaseSnapshotList = List<RecordSnapshot<String?, Map<String, dynamic>>>;
-
-
 
 class HomeDao implements DaoApi<Item?> {
   static const String homeStore = 'home_store';
@@ -40,10 +40,24 @@ class HomeDao implements DaoApi<Item?> {
     return recordSnapshots.map((snapshot) => Item.fromJson(snapshot.value)).toList();
   }
 
+  Future<List<QuizModel>> getAllQuiz() async {
+    final recordSnapshots = await _homeStore.find(await _db);
+    return recordSnapshots.map((snapshot) => QuizModel.fromJson(snapshot.value)).toList();
+  }
+
   @override
   Future<void> save(Item? model) async {
     await _homeStore.record(model!.key).put(await _db, model.toJson());
   }
+
+  Future<void> saveQuiz(QuizModel? model) async {
+    await _homeStore.record(model!.id.toString()).put(await _db, model.toJson());
+  }
+
+  Future<void> saveOneAnswerQuiz(OneAnswerQuizModel? model) async {
+    await _homeStore.record(model!.id.toString()).put(await _db, model.toJson());
+  }
+
 
   @override
   Future<void> update(Item? model) async {
@@ -72,6 +86,14 @@ class HomeDao implements DaoApi<Item?> {
 
   static List<Item> snapshotsToItemsList(DatabaseSnapshotList snapshots) {
     return snapshots.map((snapshot) => Item.fromJson(snapshot.value)).toList();
+  }
+
+  static List<QuizModel> snapshotsToQuizList(DatabaseSnapshotList snapshots) {
+    return snapshots.map((snapshot) => QuizModel.fromJson(snapshot.value)).toList();
+  }
+
+  static List<OneAnswerQuizModel> snapshotsToOneAnswerQuizList(DatabaseSnapshotList snapshots) {
+    return snapshots.map((snapshot) => OneAnswerQuizModel.fromJson(snapshot.value)).toList();
   }
 
   Future<String?> getBrightnessSavedSettings() async {
