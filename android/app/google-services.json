@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "21719358624",
+    "project_id": "simple-quiz-app-ecbf4",
+    "storage_bucket": "simple-quiz-app-ecbf4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:21719358624:android:7fdd5181f55cc6add3bdc5",
+        "android_client_info": {
+          "package_name": "com.extrawest.flutter_simple_quizapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "21719358624-16mpg4temu8465l6t46tlkm06pldajvg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCa_BGoIyz-sGudYS4Qx5DD8QXWCTNHE0g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "21719358624-16mpg4temu8465l6t46tlkm06pldajvg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
